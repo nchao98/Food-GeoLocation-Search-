@@ -24,7 +24,7 @@ $(document).ready(function () {
       .then(function (data) {
         for (var i = 0; i < data.length; i++) {
           console.log(data[i])
-          var listItem = $("<div>")
+          var listItem = $("<div>").addClass("Something").attr("id","brewery"+data[i].id)
           var name = $("<h2>").text(data[i].name);
           var street = $("<h2>").text(data[i].street);
           var state = $("<h2>").text(data[i].state);
@@ -32,9 +32,14 @@ $(document).ready(function () {
           var zip = $("<h2>").text(data[i].postal_code);
           var url = $("<h2>").text(data[i].website_url);
           var phone = $("<h2>").text(data[i].phone);
-          $(".brewery-list").append(listItem.append(name,street,city,state,zip,url,phone))
+          var button = $("<button>").text("add to favorites").addClass("saveButton")
+          $(".brewery-list").append(listItem.append(name,street,city,state,zip,url,phone,button))   
           console.log(data[i].name,data[i].street,data[i].state,data[i].postal_code,data[i].phone,data[i].website_url,data[i].brewery_type)
+       
         }
+          $(button).on("click", function(){
+          var content = $(this).children()
+          })
       });
   }
 });
