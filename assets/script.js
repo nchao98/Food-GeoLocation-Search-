@@ -16,7 +16,7 @@ $(document).ready(function () {
   }
 
   function getBrewery(geoplugin_city,geoplugin_region) {
-    var requestURL = `https://api.openbrewerydb.org/breweries?by_city=${geoplugin_city}&by_state=${geoplugin_region}`;
+    var requestURL = `https://api.openbrewerydb.org/breweries?per_page=${7}&by_city=${geoplugin_city}&by_state=${geoplugin_region}`;
     fetch(requestURL)
       .then(function (response) {
         return response.json();
@@ -24,7 +24,16 @@ $(document).ready(function () {
       .then(function (data) {
         for (var i = 0; i < data.length; i++) {
           console.log(data[i])
-          // console.log(data[i].name,data[i].street,data[i].state,data[i].postal_code,data[i].phone,data[i].website_url,data[i].brewery_type)
+          var listItem = $("<div>")
+          var name = $("<h2>").text(data[i].name);
+          var street = $("<h2>").text(data[i].street);
+          var state = $("<h2>").text(data[i].state);
+          var city = $("<h2>").text(data[i].city);
+          var zip = $("<h2>").text(data[i].postal_code);
+          var url = $("<h2>").text(data[i].website_url);
+          var phone = $("<h2>").text(data[i].phone);
+          $(".brewery-list").append(listItem.append(name,street,city,state,zip,url,phone))
+          console.log(data[i].name,data[i].street,data[i].state,data[i].postal_code,data[i].phone,data[i].website_url,data[i].brewery_type)
         }
       });
   }
