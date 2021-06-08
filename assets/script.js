@@ -73,3 +73,7 @@
 
 $(document).foundation();
 
+$(".close-button").on("click",function(){
+  hide("#animatedModal10")
+})
+
