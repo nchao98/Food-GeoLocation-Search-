@@ -18,15 +18,28 @@
         <!-- Insert location from JavaScript Here-->
         <div class = "location"></div>
        <!-- Modal Pop Up  -->
-        <p><button class="button" data-toggle="animatedModal10">Would you like to filter results?</button></p>
-                
-        <div class="reveal" id="animatedModal10" data-reveal data-close-on-click="true" data-animation-in="spin-in" data-animation-out="spin-out">
-            <h1>Whoa, I'm dizzy!</h1>
-            <p class="lead">There are many options for animating modals, check out the Motion UI library to see them all</p>
-            <button class="close-button" data-close aria-label="Close reveal" type="button">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+       <p><button class="button" data-open="exampleModal2">Click me for a modal</button></p>
+
+       <!-- This is the first modal -->
+       <div class="reveal" id="exampleModal2" data-reveal>
+         <h1>Awesome!</h1>
+         <p class="lead">I have another modal inside of me!</p>
+         <fieldset class="cell large-6">
+            <legend>Check these out</legend>
+            <div class="cell large-6">
+                <label>Website Pattern, not required, but throws error if it doesn't match the Regular Expression for a valid URL or a Domain.
+                  <input type="text" placeholder="https://get.foundation or get.foundation" pattern="website">
+                </label>
+              </div>
+            <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
+            <input id="checkbox2" type="checkbox" required><label for="checkbox2">Checkbox 2</label>
+            <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
+          </fieldset>
+         <button class="close-button" data-close aria-label="Close reveal" type="button">
+           <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+       
         
         <!-- Insert Location Information here from Javascript   -->
         <div class ="brewery-list"></div>
