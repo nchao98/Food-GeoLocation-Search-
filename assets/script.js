@@ -44,8 +44,6 @@ $(document).ready(function () {
         saveFavs();
       });
   }
-  var content = [];
-  var info = [];
   $(".brewery-list").on("click", ".saveButton", function () {
     var info1 = $(this).parent().attr("id");
     var content1 = {
@@ -85,12 +83,18 @@ $(document).ready(function () {
     var zip = $("<h2>").text(favorites[i].brewZip);
     var url = $("<h2>").text(favorites[i].brewUrl);
     var phone = $("<h2>").text(favorites[i].brewPhone);
+    var key = "brewery" + favorites[i].brewId
     console.log(name);
-    // var button = $("<button>").text("add to favorites").addClass("saveButton")
+    var button = $("<button>").text("Clear Favorites").addClass("deleteButton")
     $(".saved-list").append(
-      listItem.append(name, street, city, state, zip, url, phone)
+      listItem.append(name, street, city, state, zip, url, phone,button)
     );
     }
+    
+    $(".saved-list").on("click", ".deleteButton", function () {
+      window.localStorage.removeItem(key)
+      location.reload();
+    });
   }
 });
 $(document).foundation();
