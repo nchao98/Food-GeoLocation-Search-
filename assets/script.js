@@ -2,6 +2,10 @@ $(document).ready(function () {
   getCity();
   load();
 
+  $("#favBtn").on("click", function(){
+    document.location.replace('./favorites.html')
+  })
+
   $("#filterBtn").on("click", function (){
     $(".brewery-list").empty()
     var zip = $("#zip").value
@@ -17,7 +21,7 @@ $(document).ready(function () {
       }
   })
 
-  
+
   function getCity() {
     var requestURL = "http://www.geoplugin.net/json.gp";
     fetch(requestURL)
