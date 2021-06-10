@@ -9,35 +9,69 @@ $(document).ready(function () {
         return response.json();
       })
       .then(function (data) {
+        console.log(data)
         console.log(data.geoplugin_city, data.geoplugin_region);
-        getBrewery(data.geoplugin_city, data.geoplugin_region);
+        getBrewery(data.geoplugin_latitude, data.geoplugin_longitude)
+        // (data.geoplugin_city, data.geoplugin_region);
       });
   }
-
-  function getBrewery(geoplugin_city, geoplugin_region) {
-    var requestURL = `https://api.openbrewerydb.org/breweries?per_page=${7}&by_city=${geoplugin_city}&by_state=${geoplugin_region}`;
+  var userAnswer = {
+    brewPub: false,
+    micro: true,
+    nano: false,
+    regional: true
+  }
+  function getBrewery(lat,lon){
+  // (geoplugin_city, geoplugin_region) {
+    var requestURL = `https://api.openbrewerydb.org/breweries?by_dist=${lat},${lon}&per_page=50`
+    // `https://api.openbrewerydb.org/breweries?per_page=${7}&by_city=${geoplugin_city}&by_state=${geoplugin_region}`;
     fetch(requestURL)
       .then(function (response) {
         return response.json();
       })
       .then(function (data) {
-        for (var i = 0; i < data.length; i++) {
+        // console.log(data)
+        var results = []
+        if (userAnswer.brewPub === true){
+          var pubArray = data.filter(brewery => brewery.brewery_type === "brewpub");
+          results = results.concat(pubArray)
+        }
+
+        if (userAnswer.micro === true){
+          var microArray = data.filter(brewery => brewery.brewery_type === "micro")
+          results = results.concat(microArray)
+        }
+        console.log(results)
+
+        if (userAnswer.nano === true){
+          var nanoArray = data.filter(brewery => brewery.brewery_type === "nano")
+          results = results.concat(nanoArray)
+        }
+
+        if (userAnswer.regional === true){
+          var regionalArray = data.filter(brewery => brewery.brewery_type === "regional")
+          results = results.concat(regionalArray)
+        }
+        console.log(results);
+        var filteredForWebsite = results.filter(result => result.website_url !== null);
+        console.log(filteredForWebsite)
+                for (var i = 0; i < filteredForWebsite.length; i++) {
           // console.log(data[i])
           var listItem = $("<div>")
-            .addClass("Something")
-            .attr("id", "brewery" + data[i].id);
-          var name = $("<h2>").addClass("name").text(data[i].name);
-          var street = $("<h2>").addClass("street").text(data[i].street);
-          var state = $("<h2>").addClass("state").text(data[i].state);
-          var city = $("<h2>").addClass("city").text(data[i].city);
-          var zip = $("<h2>").addClass("zip").text(data[i].postal_code);
-          var url = $("<h2>").addClass("url").text(data[i].website_url);
-          var phone = $("<h2>").addClass("phone").text(data[i].phone);
+            .addClass("brew")
+            .attr("id", "brewery" + filteredForWebsite[i].id);
+          var name = $("<h2>").addClass("name").text(filteredForWebsite[i].name);
+          var street = $("<h3>").addClass("street").text(filteredForWebsite[i].street);
+          var state = $("<h3>").addClass("state").text(filteredForWebsite[i].state);
+          var city = $("<h3>").addClass("city").text(filteredForWebsite[i].city);
+          var zip = $("<h3>").addClass("zip").text(parseInt((filteredForWebsite[i].postal_code).split("-")[0]));
+          var url = $("<a>").attr('target', '_blank').attr("href", filteredForWebsite[i].website_url).addClass("url").text(filteredForWebsite[i].website_url);
+          var phone = $("<a>").attr("href", "tel:"+filteredForWebsite[i].phone).addClass("phone").text(filteredForWebsite[i].phone);
           var button = $("<button>")
             .text("add to favorites")
             .addClass("saveButton");
           $(".brewery-list").append(
-            listItem.append(name, street, city, state, zip, url, phone, button)
+            listItem.append(name,street,city,state,zip,url,"</br>",phone,"</br>",button)
           );
           // console.log(data[i].name,data[i].street,data[i].state,data[i].postal_code,data[i].phone,data[i].website_url,data[i].brewery_type)
         }
@@ -45,8 +79,8 @@ $(document).ready(function () {
       });
   }
   $(".brewery-list").on("click", ".saveButton", function () {
-    var info1 = $(this).parent().attr("id");
-    var content1 = {
+    var info = $(this).parent().attr("id");
+    var content = {
       brewName: $(this).parent().children(".name").html(),
       brewStreet: $(this).parent().children(".street").html(),
       brewState: $(this).parent().children(".state").html(),
@@ -56,7 +90,7 @@ $(document).ready(function () {
       brewPhone: $(this).parent().children(".phone").html(),
       brewId: parseInt($(this).parent().attr("id").split("y")[1]),
     };
-    save(info1, content1);
+    save(info, content);
   });
   function saveFavs() {}
   function save(infoP, contentP) {
@@ -75,19 +109,19 @@ $(document).ready(function () {
   function showFavs(favorites) {
     for (var i = 0; i < favorites.length; i++){
     console.log(favorites);
-    var listItem = $("<div>").attr("id", "brewery" + favorites[i].brewId);
-    var name = $("<h2>").text(favorites[i].brewName);
-    var street = $("<h2>").text(favorites[i].brewStreet);
-    var state = $("<h2>").text(favorites[i].brewState);
-    var city = $("<h2>").text(favorites[i].brewCity);
-    var zip = $("<h2>").text(favorites[i].brewZip);
-    var url = $("<h2>").text(favorites[i].brewUrl);
-    var phone = $("<h2>").text(favorites[i].brewPhone);
+    var listItem = $("<div>").addClass("brew").attr("id", "brewery" + favorites[i].brewId);
+    var name = $("<h2>").addClass("name").text(favorites[i].brewName);
+    var street = $("<h3>").addClass("street").text(favorites[i].brewStreet);
+    var state = $("<h3>").addClass("state").text(favorites[i].brewState);
+    var city = $("<h3>").addClass("city").text(favorites[i].brewCity);
+    var zip = $("<h3>").addClass("zip").text(parseInt((favorites[i].brewZip).split("-")[0]));
+    var url = $("<a>").addClass("url").attr('target', '_blank').attr("href", favorites[i].brewUrl).text(favorites[i].brewUrl);
+    var phone = $("<a>").attr("href", "tel:"+favorites[i].brewPhone).addClass("phone").text(favorites[i].brewPhone);
     var key = "brewery" + favorites[i].brewId
     console.log(name);
     var button = $("<button>").text("Clear Favorites").addClass("deleteButton")
     $(".saved-list").append(
-      listItem.append(name, street, city, state, zip, url, phone,button)
+      listItem.append(name,street,city,state,zip,url,"</br>",phone,"</br>",button)
     );
     }
     

@@ -1,5 +1,48 @@
-.saveButton {
+
+body {
+    background-color: #d69f5fbb;
+}
+
+
+.saveButton,
+.deleteButton {
     border: solid 1px black;
     padding: 4px 4px 4px 4px;
     background-color: lightgray;
+    cursor: pointer;
 }
+
+.brew {
+    margin-bottom: 4%;
+    border: solid 2px blanchedalmond;
+}
+
+.brew h3, a {
+   font-size: 200%;
+}
+
+.name {
+    font-size: 250%;
+}
+
+.name,
+.zip,
+.url,
+.phone {
+    margin-bottom: 2%;
+}
+
+.brewery-list,
+.saved-list {
+    text-align: center;
+}
+
+a {
+    padding-bottom: 2%;
+}
+
+button {
+    margin-top: 2%;
+}
+
+
