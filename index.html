@@ -18,28 +18,41 @@
         <!-- Insert location from JavaScript Here-->
         <div class = "location"></div>
        <!-- Modal Pop Up  -->
-       <p><button class="button" data-open="exampleModal2">Click me for a modal</button></p>
+       <p><button id= "filterBtn" class="button" data-open="exampleModal2">Open Filter:</button></p>
 
        <!-- This is the first modal -->
        <div class="reveal" id="exampleModal2" data-reveal>
-         <h1>Awesome!</h1>
-         <p class="lead">I have another modal inside of me!</p>
+         <p class="lead">Please select the filters you'd like to use for your search:</p>
          <fieldset class="cell large-6">
-            <legend>Check these out</legend>
-            <div class="cell large-6">
-                <label>Website Pattern, not required, but throws error if it doesn't match the Regular Expression for a valid URL or a Domain.
-                  <input type="text" placeholder="https://get.foundation or get.foundation" pattern="website">
-                </label>
-              </div>
-            <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
-            <input id="checkbox2" type="checkbox" required><label for="checkbox2">Checkbox 2</label>
-            <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
-          </fieldset>
+          <label>
+            Looking for a specific brewery?
+         <textarea id= "name" placeholder="Enter the brewery name"></textarea>
+         </label>
+           <label>
+             Zip Code:
+          <textarea id= "zip" placeholder="What zip code would you like to search for? "></textarea>
+          </label>
+          
+          <label>
+            How many breweries would you like to display?
+            <input id="number1" type="number" value="7">
+          <label class= "radioBtn">
+            What type? 
+            <input type="radio" name="brewery" value="Micro" id="brewery1" required><label for="brewery1">Micro</label>
+            <input type="radio" name="brewery" value="Nano" id="brewery2"><label for="brewery2">Nano</label>
+            <input type="radio" name="brewery" value="Regional" id="brewery3"><label for="brewery3">Regional</label>
+            <input type="radio" name="brewery" value="Brewpub" id="brewery4" ><label for="brewery4">Brewpub</label>
+            <input type="radio" name="brewery" value="Large" id="brewery5"><label for="brewery5">Large</label>
+            <input type="radio" name="brewery" value="Planning" id="brewery6"><label for="brewery6">Planning</label>
+            <input type="radio" name="brewery" value="Bar" id="brewery7" ><label for="brewery7">Bar</label>
+            <input type="radio" name="brewery" value="Contract" id="brewery8"><label for="brewery8">Contract</label>
+            <input type="radio" name="brewery" value="Proprietor" id="brewery9"><label for="brewery9">Propierto</label>
+            <input type="radio" name="brewery" value="Closed" id="brewery10" ><label for="brewery10">Closed</label>
+          </label>
          <button class="close-button" data-close aria-label="Close reveal" type="button">
            <span aria-hidden="true">&times;</span>
          </button>
        </div>
-       
         
         <!-- Insert Location Information here from Javascript   -->
         <div class ="brewery-list"></div>

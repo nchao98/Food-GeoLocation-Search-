@@ -2,6 +2,22 @@ $(document).ready(function () {
   getCity();
   load();
 
+  $("#filterBtn").on("click", function (){
+    $(".brewery-list").empty()
+    var zip = $("#zip").value
+    var name = $("#name").value
+    var number1 = $("#number1").value
+    var rbs = $('input[name="brewery"]');
+    let selectedValue;
+    for (const rb of rbs) {
+        if (rb.checked) {
+            selectedValue = rb.value;
+            break;
+        }
+      }
+  })
+
+  
   function getCity() {
     var requestURL = "http://www.geoplugin.net/json.gp";
     fetch(requestURL)
