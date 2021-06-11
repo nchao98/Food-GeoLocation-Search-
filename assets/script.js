@@ -6,20 +6,25 @@ $(document).ready(function () {
     document.location.replace('./favorites.html')
   })
 
-  $("#filterBtn").on("click", function (){
-    $(".brewery-list").empty()
-    var zip = $("#zip").value
-    var name = $("#name").value
-    var number1 = $("#number1").value
-    var rbs = $('input[name="brewery"]');
-    let selectedValue;
-    for (const rb of rbs) {
-        if (rb.checked) {
-            selectedValue = rb.value;
-            break;
-        }
-      }
-  })
+  // $("#filterBtn").on("click", function (){
+  //   $(".brewery-list").empty()
+  // })
+
+  $("#sbmt").on("click",function(){
+    var zip = $("#zip").val()
+    var name = $("#name").val()
+    var number1 = $("#number1").val()
+    console.log(zip)
+    var requestURL = `https://api.openbrewerydb.org/breweries?by_postal=${zip}&per_page=${number1}`
+  //   if (name == ""){
+  //     requestURL= `https://api.openbrewerydb.org/breweries/autocomplete?query=${name}&by_postal=${zip}&per_page=${number1}`
+  // }  //else {requestURL= `https://api.openbrewerydb.org/breweries/autocomplete?query=${name}`}
+  // // 
+  $(".brewery-list").empty()
+  updateFilters()
+  console.log(requestURL)
+  getBrewery(requestURL)
+})
 
 
   function getCity() {
@@ -30,20 +35,41 @@ $(document).ready(function () {
       })
       .then(function (data) {
         console.log(data)
-        console.log(data.geoplugin_city, data.geoplugin_region);
-        getBrewery(data.geoplugin_latitude, data.geoplugin_longitude)
+        console.log(data.geoplugin_city, );
+        
         // (data.geoplugin_city, data.geoplugin_region);
+        var requestURL = `https://api.openbrewerydb.org/breweries?by_dist=${data.geoplugin_latitude},${data.geoplugin_longitude}&per_page=50`
+        getBrewery(requestURL)
       });
   }
-  var userAnswer = {
-    brewPub: false,
-    micro: true,
-    nano: false,
-    regional: true
+  
+  var micro1
+  var nano1
+  var regional1
+  var brewpub1
+  var userAnswer
+  updateFilters()
+  function updateFilters(){
+     micro1 = $("#brewery1").is(":checked") ? true : false
+     nano1 = $("#brewery2").is(":checked") ? true : false
+     regional1 = $("#brewery3").is(":checked") ? true : false
+     brewpub1 = $("#brewery4").is(":checked") ? true : false
+     userAnswer = {
+      brewPub: brewpub1,
+      micro: micro1,
+      nano: nano1,
+      regional: regional1
+    }
   }
-  function getBrewery(lat,lon){
+  $('#btn').on("click", function (){
+    updateFilters()
+    $(".brewery-list").empty()
+    getCity()
+  })
+
+  function getBrewery(requestURL){
   // (geoplugin_city, geoplugin_region) {
-    var requestURL = `https://api.openbrewerydb.org/breweries?by_dist=${lat},${lon}&per_page=50`
+    
     // `https://api.openbrewerydb.org/breweries?per_page=${7}&by_city=${geoplugin_city}&by_state=${geoplugin_region}`;
     fetch(requestURL)
       .then(function (response) {

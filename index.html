@@ -13,62 +13,58 @@
 </head>
 <body>
     <header> Select your Brewery</header> 
-    <!-- Favorites Button -->
-    <div></div>
-    <main>
-        <!-- Insert location from JavaScript Here-->
-        <div class = "location"></div>
+  <!-- Favorites Button -->
+  <div></div>
+  <main>
+      <!-- Insert location from JavaScript Here-->
+      <div class = "location"></div>
 
-        <!-- Dropdown Menu  -->
-        <div class="columns">
-          <ul style="list-style-type: none;" data-dropdown-menu>
-            <li>
-              <a href="#Item-1"><i class="fas fa-bars"></i></a>
-              <ul class="menu">
-                <li><a href="#Item-1A"> 
-                  <!-- Modal Pop Up  -->
-                  <p><button a href="#Item-1A" id= "filterBtn" class="button primary" data-open="exampleModal2" style="width: 100%">Open Filter</button></p>
-           
-                  <!-- This is the first modal -->
-                  <div class="reveal" id="exampleModal2" data-reveal>
-                    <p class="lead">Please select the filters you'd like to use for your search:</p>
-                    <fieldset class="cell large-6">
-                     <label>
-                       Looking for a specific brewery?
-                    <textarea id= "name" placeholder="Enter the brewery name"></textarea>
-                    </label>
-                      <label>
-                        Zip Code:
-                     <textarea id= "zip" placeholder="What zip code would you like to search for? "></textarea>
-                     </label>
-                     
-                     <label>
-                       How many breweries would you like to display?
-                       <input id="number1" type="number" value="7" min="1" step="1" max="50">
-                     <label class= "radioBtn">
-                       What type? 
-                       <input type="radio" name="brewery" value="Micro" id="brewery1" required><label for="brewery1">Micro</label>
-                       <input type="radio" name="brewery" value="Nano" id="brewery2"><label for="brewery2">Nano</label>
-                       <input type="radio" name="brewery" value="Regional" id="brewery3"><label for="brewery3">Regional</label>
-                       <input type="radio" name="brewery" value="Brewpub" id="brewery4" ><label for="brewery4">Brewpub</label>
-                       <input type="radio" name="brewery" value="Large" id="brewery5"><label for="brewery5">Large</label>
-                       <input type="radio" name="brewery" value="Planning" id="brewery6"><label for="brewery6">Planning</label>
-                       <input type="radio" name="brewery" value="Bar" id="brewery7" ><label for="brewery7">Bar</label>
-                       <input type="radio" name="brewery" value="Contract" id="brewery8"><label for="brewery8">Contract</label>
-                       <input type="radio" name="brewery" value="Proprietor" id="brewery9"><label for="brewery9">Propierto</label>
-                       <input type="radio" name="brewery" value="Closed" id="brewery10" ><label for="brewery10">Closed</label>
-                     </label>
-                    <button class="close-button" data-close aria-label="Close reveal" type="button">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div></a></li>
-                
-                <li>
-                  <a href="#Item-1B">
-                    <p><button a href="#Item-1b" id= "favBtn" class="button primary" data-open="exampleModal2" style="width: 100%">Open Favorites</button></p>
-                  </a>
-                </li>
-        </div>
+      <!-- Dropdown Menu  -->
+      <div class="columns">
+        <ul style="list-style-type: none;" data-dropdown-menu>
+          <li>
+            <a href="#Item-1"><i class="fas fa-bars"></i></a>
+            <ul class="menu">
+              <li><a href="#Item-1A"> 
+                <!-- Modal Pop Up  -->
+                <p><button a href="#Item-1A" id= "filterBtn" class="button primary" data-open="exampleModal2" style="width: 100%">Open Filter</button></p>
+         
+                <!-- This is the first modal -->
+                <div class="reveal" id="exampleModal2" data-reveal>
+                  <p class="lead">Please select the filters you'd like to use for your search:</p>
+                  <fieldset class="cell large-6">
+                    <label>
+                      Zip Code:
+                   <textarea id= "zip" placeholder="What zip code would you like to search for? "></textarea>
+                   </label>
+                   
+                   <label>
+                     How many breweries would you like to display?
+                     <input id="number1" type="number" value="7" min="1" step="1" max="50">
+                   
+                  <button class="close-button" data-close aria-label="Close reveal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <a id="sbmt" class="button expanded" href="#">Submit</a>
+                </div></a></li>
+              
+              <li>
+                <a href="#Item-1B">
+                  <p><button a href="#Item-1b" id= "favBtn" class="button primary" data-open="exampleModal2" style="width: 100%">Open Favorites</button></p>
+                </a>
+              </li>
+      </div>
+     <div>
+      <label class= "radioBtn">
+        What type? 
+        <input type="checkbox" name="brewery" value="Micro" id="brewery1" required checked><label for="brewery1">Micro</label>
+        <input type="checkbox" name="brewery" value="Nano" id="brewery2" checked><label for="brewery2">Nano</label>
+        <input type="checkbox" name="brewery" value="Regional" id="brewery3" checked><label for="brewery3">Regional</label>
+        <input type="checkbox" name="brewery" value="Brewpub" id="brewery4" checked><label for="brewery4">Brewpub</label>
+      </label>
+      <button id="btn">submit</button>
+     </div>
+   
       
         
         <!-- Insert Location Information here from Javascript   -->
