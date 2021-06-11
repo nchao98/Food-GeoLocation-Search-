@@ -5,7 +5,10 @@ body {
 
 
 .saveButton,
-.deleteButton {
+.deleteButton,
+ #btn,
+ #clear,
+ #return {
     border: solid 1px black;
     padding: 4px 4px 4px 4px;
     background-color: lightgray;
