@@ -73,3 +73,39 @@ a {
 button {
   margin-top: 2%;
 }
+
+@media screen and (max-width: 600px) {
+  .url {
+    font-size: 150%;
+  }
+
+  .phone {
+    font-size: 175%;
+  }
+
+  .brew h3 {
+    font-size: 180%;
+  }
+
+  .name {
+    font-size: 225%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .url {
+    font-size: 120%;
+  }
+
+  .phone {
+    font-size: 150%;
+  }
+
+  .brew h3 {
+    font-size: 160%;
+  }
+
+  .name {
+    font-size: 200%;
+  }
+}
