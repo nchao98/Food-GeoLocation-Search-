@@ -1,78 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/style.css">
-    
-    <title>Brew near you</title>
-    
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
+    integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
+  <link rel="stylesheet" href="./assets/style.css">
+  <link rel="shortcut icon" type="image/jpg" href="images/beer.png" />
+
+  <title>Brew Near You</title>
+
 </head>
+
 <body>
-    <header> Select your Brewery 🍺</header> 
-  <!-- Favorites Button -->
-  <div></div>
+  <header> Select your Brewery 🍺</header>
   <main>
-      <!-- Insert location from JavaScript Here-->
-      <div class = "location"></div>
-      <div style="display: flex; flex-direction: row;">
-      <!-- Dropdown Menu  -->
+    <div style="display: flex; flex-direction: row;">
+
       <div class="columns">
         <ul style="list-style-type: none;" data-dropdown-menu>
           <li>
             <a href="#Item-1"><i class="fas fa-bars"></i></a>
             <ul class="menu">
-              <li><a href="#Item-1A"> 
-                <!-- Modal Pop Up  -->
-                <p><button a href="#Item-1A" id= "filterBtn" class="button primary" data-open="exampleModal2" style="width: 100%">Open Filter</button></p>
-         
-                <!-- This is the first modal -->
-                <div class="reveal" id="exampleModal2" data-reveal>
-                  <p class="lead">Please select the filters you'd like to use for your search:</p>
-                  <fieldset class="cell large-6">
-                    <label>
-                      Zip Code:
-                   <textarea id= "zip" placeholder="What zip code would you like to search for? "></textarea>
-                   </label>
-                   
-                   <label>
-                     How many breweries would you like to display?
-                     <input id="number1" type="number" value="7" min="1" step="1" max="50">
-                   
-                  <button class="close-button" data-close aria-label="Close reveal" type="button">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                  <a id="sbmt" class="button expanded" data-close aria-label="Close reveal" href="#">Submit</a>
-                </div></a></li>
-              
-              <li>
-                <a href="#Item-1B">
-                  <p><button a href="#Item-1b" id= "favBtn" class="button primary" data-open="exampleModal2" style="width: 100%">Open Favorites</button></p>
+              <li><a href="#Item-1A">
+
+                  <p><button a href="#Item-1A" id="filterBtn" class="button primary" data-open="exampleModal2"
+                      style="width: 100%">Open Filter</button></p>
+
+
+                  <div class="reveal" id="exampleModal2" data-reveal>
+                    <p class="lead">Please select the filters you'd like to use for your search:</p>
+                    <fieldset class="cell large-6">
+                      <label>
+                        Zip Code:
+                        <textarea id="zip" placeholder="What zip code would you like to search for? "></textarea>
+                      </label>
+
+                      <label>
+                        How many breweries would you like to display?
+                        <input id="number1" type="number" value="7" min="1" step="1" max="50">
+
+                        <button class="close-button" data-close aria-label="Close reveal" type="button">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                        <a id="sbmt" class="button expanded" data-close aria-label="Close reveal" href="#">Submit</a>
+                      </label>
+                  </div>
                 </a>
               </li>
+
+              <li>
+                <a href="#Item-1B">
+                  <p><button a href="#Item-1b" id="favBtn" class="button primary" data-open="exampleModal2"
+                      style="width: 100%">Open Favorites</button></p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
       </div>
-     <div style="margin: auto; text-align: center;">
-      <label class= "radioBtn" style="display: inline-block; ">
-        What type? 
-        <input type="checkbox" name="brewery" value="Micro" id="brewery1" required checked><label for="brewery1">Micro</label>
-        <input type="checkbox" name="brewery" value="Nano" id="brewery2" checked><label for="brewery2">Nano</label>
-        <input type="checkbox" name="brewery" value="Regional" id="brewery3" checked><label for="brewery3">Regional</label>
-        <input type="checkbox" name="brewery" value="Brewpub" id="brewery4" checked><label for="brewery4">Brewpub</label>
-      </label>
-      <button id="btn" class="button expanded">Submit</button>
-     </div>
+      <div style="margin: auto; text-align: center;">
+        <label class="radioBtn" style="display: inline-block; ">
+          What type?
+          <input type="checkbox" name="brewery" value="Micro" id="brewery1" required checked><label
+            for="brewery1">Micro</label>
+          <input type="checkbox" name="brewery" value="Nano" id="brewery2" checked><label for="brewery2">Nano</label>
+          <input type="checkbox" name="brewery" value="Regional" id="brewery3" checked><label
+            for="brewery3">Regional</label>
+          <input type="checkbox" name="brewery" value="Brewpub" id="brewery4" checked><label
+            for="brewery4">Brewpub</label>
+        </label>
+        <button id="btn" class="button expanded">Submit</button>
+      </div>
     </div>
-      
-        
-        <!-- Insert Location Information here from Javascript   -->
-        <div class ="brewery-list"></div>
-    </main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
-    <script src="./assets/script.js"></script>
+
+
+
+    <div class="brewery-list"></div>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
+    integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+  <script src="./assets/script.js"></script>
 </body>
+
 </html>
- 
