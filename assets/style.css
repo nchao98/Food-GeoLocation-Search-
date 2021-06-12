@@ -1,5 +1,6 @@
 body {
     background-image: url("https://cdn.hipwallpaper.com/i/43/38/QFx4fU.jpg");
+    background-size: contain;
     
 
 }
@@ -16,7 +17,6 @@ a:hover {
     outline: none;
     text-decoration: none;
 }
-
 
 
 .radioBtn   {
@@ -41,6 +41,7 @@ h2, h3{
 .brew {
     margin-bottom: 4%;
     border: solid 2px blanchedalmond;
+    background-color: rgba(240, 193, 66, 0.39);
 }
 
 .brew h3, a {
