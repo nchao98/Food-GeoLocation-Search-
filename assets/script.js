@@ -6,10 +6,6 @@ $(document).ready(function () {
     document.location.replace("./favorites.html");
   });
 
-  // $("#filterBtn").on("click", function (){
-  //   $(".brewery-list").empty()
-  // })
-
   function getCity() {
     var requestURL = "https://ipapi.co/json/";
     fetch(requestURL)
@@ -18,26 +14,18 @@ $(document).ready(function () {
       })
       .then(function (data) {
         console.log(data);
-        console.log(data.geoplugin_city);
-
-        // (data.geoplugin_city, data.geoplugin_region);
         var requestURL = `https://api.openbrewerydb.org/breweries?by_dist=${data.latitude},${data.longitude}&per_page=10`;
         getBrewery(requestURL);
-        filter(data.geoplugin_latitude, data.geoplugin_longitude);
+        filter(data.latitude, data.longitude);
       });
   }
 
   function filter(lat, lon) {
     $("#sbmt").on("click", function () {
       var zip = $("#zip").val();
-      // var name = $("#name").val()
       var number1 = $("#number1").val();
       console.log(zip);
       var requestURL = `https://api.openbrewerydb.org/breweries?&by_dist=${lat},${lon}by_postal=${zip}&per_page=${number1}`;
-      //   if (name == ""){
-      //     requestURL= `https://api.openbrewerydb.org/breweries/autocomplete?query=${name}&by_postal=${zip}&per_page=${number1}`
-      // }  //else {requestURL= `https://api.openbrewerydb.org/breweries/autocomplete?query=${name}`}
-      // //
       $(".brewery-list").empty();
       updateFilters();
       console.log(requestURL);
@@ -70,15 +58,11 @@ $(document).ready(function () {
   });
 
   function getBrewery(requestURL) {
-    // (geoplugin_city, geoplugin_region) {
-
-    // `https://api.openbrewerydb.org/breweries?per_page=${7}&by_city=${geoplugin_city}&by_state=${geoplugin_region}`;
     fetch(requestURL)
       .then(function (response) {
         return response.json();
       })
       .then(function (data) {
-        // console.log(data)
         var results = [];
         if (userAnswer.brewPub === true) {
           var pubArray = data.filter(
@@ -114,7 +98,7 @@ $(document).ready(function () {
         );
         console.log(filteredForWebsite);
         for (var i = 0; i < filteredForWebsite.length; i++) {
-          // console.log(data[i])
+
           var listItem = $("<div>")
             .addClass("brew")
             .attr("id", "brewery" + filteredForWebsite[i].id);
@@ -159,7 +143,6 @@ $(document).ready(function () {
               button
             )
           );
-          // console.log(data[i].name,data[i].street,data[i].state,data[i].postal_code,data[i].phone,data[i].website_url,data[i].brewery_type)
         }
         saveFavs();
       });
