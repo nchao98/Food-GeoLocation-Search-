@@ -11,7 +11,7 @@ $(document).ready(function () {
   // })
 
   function getCity() {
-    var requestURL = "http://www.geoplugin.net/json.gp";
+    var requestURL = "https://ipapi.co/json/";
     fetch(requestURL)
       .then(function (response) {
         return response.json();
@@ -21,7 +21,7 @@ $(document).ready(function () {
         console.log(data.geoplugin_city);
 
         // (data.geoplugin_city, data.geoplugin_region);
-        var requestURL = `https://api.openbrewerydb.org/breweries?by_dist=${data.geoplugin_latitude},${data.geoplugin_longitude}&per_page=10`;
+        var requestURL = `https://api.openbrewerydb.org/breweries?by_dist=${data.latitude},${data.longitude}&per_page=10`;
         getBrewery(requestURL);
         filter(data.geoplugin_latitude, data.geoplugin_longitude);
       });
@@ -33,7 +33,7 @@ $(document).ready(function () {
       // var name = $("#name").val()
       var number1 = $("#number1").val();
       console.log(zip);
-      var requestURL = `https://api.openbrewerydb.org/breweries?&by_dist=${lat},${lon}&by_postal=${zip}&per_page=${number1}`;
+      var requestURL = `https://api.openbrewerydb.org/breweries?&by_dist=${lat},${lon}by_postal=${zip}&per_page=${number1}`;
       //   if (name == ""){
       //     requestURL= `https://api.openbrewerydb.org/breweries/autocomplete?query=${name}&by_postal=${zip}&per_page=${number1}`
       // }  //else {requestURL= `https://api.openbrewerydb.org/breweries/autocomplete?query=${name}`}
@@ -144,7 +144,7 @@ $(document).ready(function () {
             .text(filteredForWebsite[i].phone);
           var button = $("<button>")
             .text("Add to Favorites")
-            .addClass("saveButton");
+            .addClass("saveButton success button");
           $(".brewery-list").append(
             listItem.append(
               name,
@@ -217,7 +217,7 @@ $(document).ready(function () {
       console.log(name);
       var button = $("<button>")
         .text("Remove from Favorites")
-        .addClass("deleteButton");
+        .addClass("deleteButton button alert");
       $(".saved-list").append(
         listItem.append(
           name,
