@@ -27,6 +27,9 @@ label   {
     color: goldenrod;
 }
 
+h2, h3{
+    color: white;
+}
 .saveButton,
 .deleteButton {
     border: solid 1px black;
