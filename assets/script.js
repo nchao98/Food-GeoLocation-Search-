@@ -13,7 +13,6 @@ $(document).ready(function () {
         return response.json();
       })
       .then(function (data) {
-        console.log(data);
         var requestURL = `https://api.openbrewerydb.org/breweries?by_dist=${data.latitude},${data.longitude}&per_page=10`;
         getBrewery(requestURL);
         filter(data.latitude, data.longitude);
@@ -24,11 +23,9 @@ $(document).ready(function () {
     $("#sbmt").on("click", function () {
       var zip = $("#zip").val();
       var number1 = $("#number1").val();
-      console.log(zip);
       var requestURL = `https://api.openbrewerydb.org/breweries?&by_dist=${lat},${lon}&by_postal=${zip}&per_page=${number1}`;
       $(".brewery-list").empty();
       updateFilters();
-      console.log(requestURL);
       getBrewery(requestURL);
     });
   }
@@ -39,6 +36,7 @@ $(document).ready(function () {
   var brewpub1;
   var userAnswer;
   updateFilters();
+
   function updateFilters() {
     micro1 = $("#brewery1").is(":checked") ? true : false;
     nano1 = $("#brewery2").is(":checked") ? true : false;
@@ -77,7 +75,6 @@ $(document).ready(function () {
           );
           results = results.concat(microArray);
         }
-        console.log(results);
 
         if (userAnswer.nano === true) {
           var nanoArray = data.filter(
@@ -92,11 +89,9 @@ $(document).ready(function () {
           );
           results = results.concat(regionalArray);
         }
-        console.log(results);
         var filteredForWebsite = results.filter(
           (result) => result.website_url !== null
         );
-        console.log(filteredForWebsite);
         for (var i = 0; i < filteredForWebsite.length; i++) {
           var listItem = $("<div>")
             .addClass("brew")
@@ -146,6 +141,7 @@ $(document).ready(function () {
         saveFavs();
       });
   }
+
   $(".brewery-list").on("click", ".saveButton", function () {
     var info = $(this).parent().attr("id");
     var content = {
@@ -160,22 +156,23 @@ $(document).ready(function () {
     };
     save(info, content);
   });
+
   function saveFavs() {}
+
   function save(infoP, contentP) {
     localStorage.setItem(infoP, JSON.stringify(contentP));
   }
+
   function load() {
     var content = [];
     for (var i = 0, len = localStorage.length; i < len; ++i) {
       content.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-      console.log(localStorage.getItem(localStorage.key(i)));
     }
-    console.log(content);
     showFavs(content);
   }
+
   function showFavs(favorites) {
     for (var i = 0; i < favorites.length; i++) {
-      console.log(favorites);
       var listItem = $("<div>")
         .addClass("brew")
         .attr("id", "brewery" + favorites[i].brewId);
@@ -196,7 +193,6 @@ $(document).ready(function () {
         .addClass("phone")
         .text(favorites[i].brewPhone);
       var key = "brewery" + favorites[i].brewId;
-      console.log(name);
       var button = $("<button>")
         .text("Remove from Favorites")
         .addClass("deleteButton button alert");
