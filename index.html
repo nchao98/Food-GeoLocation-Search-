@@ -12,18 +12,18 @@
     
 </head>
 <body>
-    <header><h2>Select your Brewery</h2></header> 
+    <header> Select your Brewery</header> 
   <!-- Favorites Button -->
   <div></div>
   <main>
       <!-- Insert location from JavaScript Here-->
       <div class = "location"></div>
-
+      <div style="display: flex; flex-direction: row;">
       <!-- Dropdown Menu  -->
       <div class="columns">
         <ul style="list-style-type: none;" data-dropdown-menu>
           <li>
-           <a href="#Item-1"><i class="fas fa-bars"></i></a>
+            <a href="#Item-1"><i class="fas fa-bars"></i></a>
             <ul class="menu">
               <li><a href="#Item-1A"> 
                 <!-- Modal Pop Up  -->
@@ -45,7 +45,7 @@
                   <button class="close-button" data-close aria-label="Close reveal" type="button">
                     <span aria-hidden="true">&times;</span>
                   </button>
-                  <a id="sbmt" class="button expanded" href="#">Submit</a>
+                  <a id="sbmt" class="button expanded" data-close aria-label="Close reveal" href="#">Submit</a>
                 </div></a></li>
               
               <li>
@@ -54,17 +54,17 @@
                 </a>
               </li>
       </div>
-     <div>
-      <label class= "radioBtn">
+     <div style="margin: auto; text-align: center;">
+      <label class= "radioBtn" style="display: inline-block; ">
         What type? 
         <input type="checkbox" name="brewery" value="Micro" id="brewery1" required checked><label for="brewery1">Micro</label>
         <input type="checkbox" name="brewery" value="Nano" id="brewery2" checked><label for="brewery2">Nano</label>
         <input type="checkbox" name="brewery" value="Regional" id="brewery3" checked><label for="brewery3">Regional</label>
         <input type="checkbox" name="brewery" value="Brewpub" id="brewery4" checked><label for="brewery4">Brewpub</label>
       </label>
-      <button id="btn">Submit</button>
+      <button id="btn">submit</button>
      </div>
-   
+    </div>
       
         
         <!-- Insert Location Information here from Javascript   -->
