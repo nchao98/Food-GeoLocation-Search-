@@ -25,7 +25,7 @@ $(document).ready(function () {
       var zip = $("#zip").val();
       var number1 = $("#number1").val();
       console.log(zip);
-      var requestURL = `https://api.openbrewerydb.org/breweries?&by_dist=${lat},${lon}by_postal=${zip}&per_page=${number1}`;
+      var requestURL = `https://api.openbrewerydb.org/breweries?&by_dist=${lat},${lon}&by_postal=${zip}&per_page=${number1}`;
       $(".brewery-list").empty();
       updateFilters();
       console.log(requestURL);
@@ -98,7 +98,6 @@ $(document).ready(function () {
         );
         console.log(filteredForWebsite);
         for (var i = 0; i < filteredForWebsite.length; i++) {
-
           var listItem = $("<div>")
             .addClass("brew")
             .attr("id", "brewery" + filteredForWebsite[i].id);
